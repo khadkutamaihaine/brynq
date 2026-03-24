@@ -1,155 +1,132 @@
 <p align="center">
   <img src="brynq-logo.jpg" alt="Brynq" width="120" />
   <h1 align="center">Brynq</h1>
-  <p align="center"><strong>All your AI models. One app.</strong></p>
+  <p align="center"><strong>The operating system for AI workforces</strong></p>
 </p>
 
 ---
 
-Brynq connects the AI tools you already use — Gemini, Claude, ChatGPT, Llama, Mistral — and makes them work together. Log in with Google, and Brynq automatically finds every model on your machine.
-
-No new subscriptions. No API keys to manage. Your AI, orchestrated.
+Orchestrate Claude, Gemini, GPT, Llama, and **2,600+ AI tools** from one platform. Your team brings their own AI subscriptions — Brynq makes them work together.
 
 ```
-You: "Research the latest on solid-state batteries and summarize the key breakthroughs"
+You: "Review this quarter's pipeline data and flag any deals at risk"
 
-  Gemini:  Searching recent papers and news... Found 12 key developments
-           in 2025-2026 including Toyota's sulfide electrolyte breakthrough...
+  Gemini:  Pulled Q1 data from Salesforce. 3 deals flagged: Acme Corp
+           ($240K) missed last check-in, NovaTech ($180K) has no next
+           steps logged, and Helios ($95K) pushed close date twice.
 
-  Claude:  Analyzing Gemini's findings. The most significant trend is the
-           shift from oxide to sulfide electrolytes, which reduces interface
-           resistance by 10x...
+  Claude:  Cross-referencing with email threads and calendar: Acme's
+           champion went on leave March 1. Recommend escalating to their
+           VP. NovaTech's contract is with legal — likely stalled there,
+           not lost. Helios is genuinely at risk.
 
-  Llama:   Summary: Three breakthroughs matter most — (1) Toyota's sulfide
-           cells hitting 500 Wh/kg, (2) QuantumScape's solid-state pouch
-           cells passing automotive qualification, (3) Samsung SDI's...
+  Llama:   ● Acme — escalate to VP (champion on leave)
+           ● NovaTech — follow up with legal (not lost)
+           ● Helios — at risk, needs intervention this week
 ```
 
 ---
 
 ## Get started
 
-### Option 1: Download the desktop app (easiest)
-
-No Python needed. Just download, install, and run.
-
-<p>
-  <a href="https://github.com/khadkutamaihaine/Brynq/releases/latest/download/Brynq_0.3.0_x64-setup.exe">
-    <strong>Download for Windows (.exe)</strong>
-  </a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  macOS / Linux coming soon
-</p>
-
-### Option 2: Install via pip
-
-Requires Python. If you don't have it, install these first:
-
-**What you need:**
-
-| Software | What it does | Get it |
-|----------|-------------|--------|
-| **Python 3.10+** | Runs Brynq | [python.org/downloads](https://www.python.org/downloads/) |
-| **Ollama** (optional) | Free local AI models (Llama, Mistral) | [ollama.com/download](https://ollama.com/download) |
-
-That's it. Google login and Claude detection are built in — no extra installs.
-
 ```bash
 pip install brynq
 
-brynq-runtime start     # Opens the app in your browser
-brynq-runtime models    # See all detected models
-brynq-runtime status    # Check connections
+brynq-runtime start     # Opens the app + detects all your models
+brynq-runtime chat       # Interactive multi-model chat
+brynq-runtime models     # List all detected models
 ```
 
-Brynq will automatically detect everything on your machine — Ollama models, Claude CLI, Google account.
+Or [download the desktop app](https://github.com/khadkutamaihaine/Brynq/releases/latest/download/Brynq_0.3.0_x64-setup.exe) for Windows.
 
 ---
 
-## How it works
+## What Brynq does
 
-### 1. Log in with Google
+### Multi-model orchestration
+One prompt, multiple AI models working together. Brynq automatically picks the right strategy:
 
-One click. Uses your existing Google account to access Gemini. No API keys, no credit card, no extra charges.
+| Strategy | How it works | Best for |
+|----------|-------------|----------|
+| **Debate** | Two models argue, a third judges | Comparisons, decisions |
+| **Refine** | One drafts, another critiques, first revises | Creative work, writing |
+| **Fan-Out** | Models run in parallel, results merged | Research, analysis |
+| **Sequential** | A→B→C with context passing | Multi-step workflows |
+| **Single** | One model, direct response | Simple questions |
 
-### 2. Brynq detects your models
+### 2,600+ marketplace tools
+GitHub, Salesforce, Slack, databases, web search, document processing — install with one click, chain with any AI model.
 
-Have Claude installed? Ollama running? Brynq finds them automatically. Nothing to configure.
+```bash
+brynq-runtime chain "pull my GitHub PRs, analyze with Claude, summarize with Llama"
+```
 
-| Model | How Brynq finds it | Cost to you |
-|-------|-------------------|-------------|
-| **Gemini** | Google OAuth (one-click login) | Your existing Google account |
-| **Claude** | Auto-detected if installed on your machine | Your existing subscription |
-| **Llama, Mistral, Phi** | Auto-detected via Ollama | Free (runs on your hardware) |
-| **ChatGPT** | Auto-detected or paste API key | Your existing subscription or API key |
-| **Any Ollama model** | Auto-detected | Free |
+### Bring your own keys (BYOK)
+Use your team's existing Claude, Gemini, and ChatGPT subscriptions. Add free local models via Ollama. No new vendor contracts.
 
-### 3. They work together
-
-You ask once. Brynq figures out which model handles which part, then executes locally on your machine. Five strategies:
-
-- **Sequential** — One model's output feeds the next
-- **Fan-Out** — Multiple models answer in parallel, best response wins
-- **Debate** — Models critique each other's answers
-- **Refine** — One drafts, another improves, repeat
-- **Single** — Route to the best model for this specific task
+### Privacy-first
+All processing runs locally. Your documents, code, and data never touch our servers. Only orchestration metadata is shared.
 
 ---
 
-## Marketplace
+## Supported models
 
-Specialized AI agents built by experts. Use them directly from Brynq — they run on our servers, so you never download the model.
-
-| Agent | What it does |
-|-------|-------------|
-| **Civil Engineer** | Structural analysis, beam design, code compliance (AISC, IS 456) |
-| **Sigma ML Engineer** | Model drift detection, health audits, training oversight |
-| **Delta Data Pipeline** | Schema validation, freshness monitoring, data quality |
-| **Omega Compliance** | Regulatory tracking, audit trails, policy enforcement |
-| **Alpha Performance** | Latency profiling, bottleneck detection, capacity planning |
-| **Theta Infrastructure** | Service health, deployment validation, incident diagnosis |
-| **Conductor Lifecycle** | Standup generation, task prioritization, sprint health |
-
-Free during early access. [Learn more at brynq.ai](https://brynq.ai)
+| Model | Provider | How to connect |
+|-------|----------|---------------|
+| Claude (Opus, Sonnet, Haiku) | Anthropic | OAuth login or API key |
+| Gemini (Pro, Flash) | Google | OAuth login or API key |
+| GPT-4, GPT-4o | OpenAI | API key |
+| Llama 3, Mistral, DeepSeek | Ollama | Auto-detected (local) |
+| Phi, Qwen, CodeGemma | Ollama | Auto-detected (local) |
+| Any GGUF model | LM Studio | Auto-detected (local) |
 
 ---
 
-## Why Brynq
+## For agent creators
 
-**No extra charges** — Uses the subscriptions and tools you already have. No surprise bills.
+Build specialized AI agents and list them on the Brynq marketplace. Set your own price — **Brynq takes 15%, you keep 85%.**
 
-**Private by default** — Local models run entirely on your computer. Your data never leaves your machine.
+```
+Your agent: HTTP endpoint + JSON in/out. Any language, any hosting.
+Listing:    Set your price, write your description, submit for review.
+Payments:   Brynq handles billing via Stripe Connect.
+```
 
-**Smarter together** — Models fact-check each other. Together they produce better results than any single model.
-
-**One conversation** — Stop juggling tabs. Ask once, get answers from your whole team, in one place.
-
----
-
-## Security
-
-- **Your keys stay local** — Encrypted on your machine, never sent to our servers.
-- **Your data stays local** — Documents and conversations never leave your computer.
-- **Tamper-proof** — Execution plans are cryptographically signed and time-limited.
+[Learn more about creating agents →](https://brynq.ai/pricing)
 
 ---
 
-## Requirements
+## Architecture
 
-| | Minimum | Recommended |
-|--|---------|-------------|
-| **OS** | Windows 10, macOS 12, Ubuntu 20.04 | Latest |
-| **RAM** | 8 GB | 16 GB+ (for local models) |
-| **GPU** | Not required | Any NVIDIA GPU (for faster local inference) |
-| **Python** | 3.10+ (pip install only) | 3.11+ |
-| **Disk** | 500 MB (Brynq only) | 10 GB+ (with Ollama models) |
+```
+brynq.ai (Cloud)                          User's Machine
+┌─────────────────────────┐               ┌──────────────────────────┐
+│ Chain Planner (our IP)  │   signed      │ Plan Executor            │
+│ ├── Intent classifier   │   plans       │ ├── Local Bridge → Ollama│
+│ ├── Strategy selector   │◄────────────► │ ├── Cloud Bridge → Claude│
+│ ├── Model scorer        │   metadata    │ ├── Agent Bridge → Tools │
+│ └── Quality evaluator   │   only        │ └── Privacy Filter       │
+│                         │               │                          │
+│ Marketplace (2,600+)    │               │ User content stays here  │
+│ Agent Registry          │               │ API keys stay here       │
+└─────────────────────────┘               └──────────────────────────┘
+```
+
+**What stays on our servers:** Chain planning, model scoring, marketplace catalog.
+**What stays on your machine:** Your data, API keys, model outputs, agent execution.
 
 ---
 
-## License
+## Links
 
-See [LICENSE](LICENSE) for details.
+- [brynq.ai](https://brynq.ai) — Platform
+- [Marketplace](https://brynq.ai/marketplace) — 2,600+ AI tools
+- [Pricing](https://brynq.ai/pricing) — Free platform, 15% marketplace commission
+- [Documentation](https://brynq.ai/docs) — Guides and API reference
 
-**Website:** [brynq.ai](https://brynq.ai)
+---
 
-Built by [Gurjeet Grewal](https://github.com/khadkutamaihaine).
+<p align="center">
+  <strong>The operating system for AI workforces</strong><br/>
+  <a href="https://brynq.ai">brynq.ai</a>
+</p>
