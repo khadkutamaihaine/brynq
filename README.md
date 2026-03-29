@@ -37,7 +37,17 @@ One prompt. Three models. Zero manual wiring.
 
 ---
 
-## Quick Start
+## Install
+
+<table>
+<tr>
+<td align="center"><strong>Windows Desktop</strong><br/><a href="https://github.com/khadkutamaihaine/Brynq/releases/latest/download/Brynq_0.4.69_x64-setup.exe">Download .exe</a></td>
+<td align="center"><strong>Windows MSI</strong><br/><a href="https://github.com/khadkutamaihaine/Brynq/releases/latest/download/Brynq_0.4.69_x64_en-US.msi">Download .msi</a></td>
+<td align="center"><strong>pip (all platforms)</strong><br/><code>pip install brynq</code></td>
+</tr>
+</table>
+
+### Quick Start (CLI)
 
 ```bash
 pip install brynq
