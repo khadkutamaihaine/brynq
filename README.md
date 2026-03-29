@@ -52,30 +52,6 @@ That's it. Brynq detects your installed models (Ollama, Claude CLI, Gemini CLI) 
 
 Brynq chains multiple AI models together to solve tasks that no single model handles well. You type one prompt. Brynq decides which models to use, in what order, with what strategy — then executes locally on your machine.
 
-Your data never leaves your computer. The orchestration intelligence runs on our servers. The execution happens on yours.
-
----
-
-## How It Works
-
-```
-brynq.ai (Our Servers)                     Your Machine
-┌────────────────────────┐                 ┌─────────────────────────┐
-│  THE BRAIN              │    signed      │  THE HANDS               │
-│  ├─ Chain Planner       │    plans       │  ├─ Plan Executor        │
-│  ├─ 5 Chain Strategies  │◄──────────────►│  ├─ Ollama Bridge   → local
-│  ├─ Model Scorer (14)   │   metadata     │  ├─ Claude Bridge   → API
-│  ├─ Prompt Optimizer    │   only         │  ├─ Gemini Bridge   → API
-│  └─ Quality Evaluator   │               │  ├─ Encrypted Key Vault  │
-│                          │               │  └─ Privacy Filter       │
-│  Never leaves our        │               │                          │
-│  servers.                │               │  Your content stays here.│
-└────────────────────────┘                 └─────────────────────────┘
-```
-
-**What can be reverse-engineered:** How the runtime calls Ollama, Claude, Gemini. Just HTTP calls.
-
-**What cannot be reverse-engineered:** How we plan chains, optimize prompts, score models, evaluate quality.
 
 ---
 
