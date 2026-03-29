@@ -1,140 +1,181 @@
 <p align="center">
-  <img src="brynq-logo.jpg" alt="Brynq" width="120" />
-  <h1 align="center">Brynq</h1>
-  <p align="center"><strong>The operating system for AI workforces</strong></p>
+  <img src="brynq-logo.jpg" alt="Brynq" width="100" />
+</p>
+
+<h1 align="center">Brynq</h1>
+
+<p align="center">
+  <strong>The operating system for AI workforces</strong><br/>
+  Bring your own Claude, Gemini, or Llama. Brynq orchestrates them together.
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/brynq/"><img src="https://img.shields.io/pypi/v/brynq?color=%2334D058&label=PyPI" alt="PyPI"></a>
+  <a href="https://pypi.org/project/brynq/"><img src="https://img.shields.io/pypi/dm/brynq?color=%2334D058&label=Downloads" alt="Downloads"></a>
+  <a href="https://github.com/khadkutamaihaine/brynq/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-blue" alt="License"></a>
+  <a href="https://brynq.ai"><img src="https://img.shields.io/badge/Web-brynq.ai-blue" alt="Website"></a>
+</p>
+
+<p align="center">
+  <a href="https://brynq.ai">Website</a> &middot;
+  <a href="https://brynq.ai/docs">Docs</a> &middot;
+  <a href="https://brynq.ai/marketplace">Marketplace</a> &middot;
+  <a href="https://brynq.ai/pricing">Pricing</a>
 </p>
 
 ---
 
-Orchestrate Claude, Gemini, GPT, Llama, and **2,600+ AI tools** from one platform. Your team brings their own AI subscriptions. Brynq makes them work together — and gets smarter every time.
-
 ```
-You: "Analyze our Q1 pipeline and flag deals at risk"
+You:  "Analyze our Q1 pipeline and flag deals at risk"
 
-  Gemini → Salesforce:  Pulled Q1 data. 3 deals flagged: Acme ($240K)
-           missed check-in, NovaTech ($180K) stalled, Helios ($95K) slipping.
+  Claude   Pulled contract history. Acme's champion went on leave — escalate to VP.
+  Gemini   Cross-referenced CRM. NovaTech is with legal, not lost. Helios is genuine risk.
+  Llama    Summarized: 1 action (escalate Acme), 1 monitor (NovaTech), 1 urgent (Helios).
 
-  Claude → Email+Cal:   Acme's champion went on leave March 1 — escalate
-           to VP. NovaTech is with legal, not lost. Helios is genuine risk.
-
-  Brynq:  Summary: 1 action (escalate Acme), 1 monitor (NovaTech),
-          1 urgent (Helios needs intervention this week).
+One prompt. Three models. Zero manual wiring.
 ```
-
-One prompt. Three models. Two data sources. Zero manual wiring.
 
 ---
 
-## Get started
+## Quick Start
 
 ```bash
 pip install brynq
-
-python -m brynq
+brynq-runtime start
 ```
 
-Or [download the desktop app](https://github.com/khadkutamaihaine/Brynq/releases/latest).
+That's it. Brynq detects your installed models (Ollama, Claude CLI, Gemini CLI) and starts orchestrating.
 
 ---
 
-## What Brynq does
+## What is Brynq?
 
-### Multi-model orchestration
-One prompt, multiple AI models working together. Brynq picks the right strategy automatically.
+Brynq chains multiple AI models together to solve tasks that no single model handles well. You type one prompt. Brynq decides which models to use, in what order, with what strategy — then executes locally on your machine.
+
+Your data never leaves your computer. The orchestration intelligence runs on our servers. The execution happens on yours.
+
+---
+
+## How It Works
+
+```
+brynq.ai (Our Servers)                     Your Machine
+┌────────────────────────┐                 ┌─────────────────────────┐
+│  THE BRAIN              │    signed      │  THE HANDS               │
+│  ├─ Chain Planner       │    plans       │  ├─ Plan Executor        │
+│  ├─ 5 Chain Strategies  │◄──────────────►│  ├─ Ollama Bridge   → local
+│  ├─ Model Scorer (14)   │   metadata     │  ├─ Claude Bridge   → API
+│  ├─ Prompt Optimizer    │   only         │  ├─ Gemini Bridge   → API
+│  └─ Quality Evaluator   │               │  ├─ Encrypted Key Vault  │
+│                          │               │  └─ Privacy Filter       │
+│  Never leaves our        │               │                          │
+│  servers.                │               │  Your content stays here.│
+└────────────────────────┘                 └─────────────────────────┘
+```
+
+**What can be reverse-engineered:** How the runtime calls Ollama, Claude, Gemini. Just HTTP calls.
+
+**What cannot be reverse-engineered:** How we plan chains, optimize prompts, score models, evaluate quality.
+
+---
+
+## Chain Strategies
+
+Brynq picks the right strategy automatically based on your prompt.
 
 | Strategy | How it works | Best for |
 |----------|-------------|----------|
-| **Debate** | Models argue, a judge decides | Decisions, comparisons |
-| **Refine** | Draft, critique, revise | Writing, analysis |
-| **Fan-Out** | Models run in parallel, merge results | Research, data gathering |
-| **Sequential** | A passes context to B to C | Multi-step workflows |
-| **Swarm** | Up to 20 agents working in parallel | Large projects |
-
-### 2,600+ tools, one marketplace
-Connect to any API, database, or service. GitHub, Salesforce, Slack, Stripe, PostgreSQL, and thousands more. Install with one click or let Brynq auto-detect what you need.
-
-```
-You: "What are my open GitHub PRs?"
-
-  Brynq:  [Auto-installed: GitHub]
-          You have 3 open PRs...
-```
-
-### Universal protocol support
-Point Brynq at any endpoint. It figures out the protocol and connects.
-
-- **REST APIs** — any OpenAPI/Swagger spec
-- **GraphQL** — introspection-based discovery
-- **SQL** — PostgreSQL, MySQL, SQLite
-- **MCP** — Model Context Protocol servers
-- **gRPC** — service reflection
-- **WebSocket** — real-time streams
-
-### Persistent memory
-Brynq remembers across conversations. Project context, past decisions, and outcomes feed into every response. The more you use it, the better it gets.
-
-### Privacy-first
-All execution runs locally. Your documents, code, and data never touch our servers. API keys stay in your encrypted vault. Only orchestration metadata is shared.
+| **Debate** | Models argue opposing sides, a judge decides | Decisions, comparisons, risk assessment |
+| **Refine** | Draft → critique → revise cycle | Writing, analysis, code review |
+| **Fan-Out** | Models run in parallel, results merged | Research, data gathering, broad questions |
+| **Sequential** | Model A passes context to B to C | Multi-step workflows, pipelines |
+| **Single** | Best model for the task, no chain | Quick questions, simple tasks |
 
 ---
 
-## Supported models
+## Supported Models
 
-| Provider | Models |
-|----------|--------|
-| Anthropic | Claude Opus, Sonnet, Haiku |
-| Google | Gemini Pro, Flash |
-| OpenAI | GPT-4, GPT-4o |
-| Ollama | Llama 3, Mistral, DeepSeek, Phi, Qwen, CodeGemma |
-| LM Studio | Any GGUF model |
+| Provider | Models | Auth |
+|----------|--------|------|
+| **Ollama** | Llama 3, Mistral, DeepSeek, Phi, Qwen, CodeGemma | Free (local) |
+| **Anthropic** | Claude Opus, Sonnet, Haiku | Your subscription or API key |
+| **Google** | Gemini Pro, Flash | Your subscription or API key |
+| **OpenAI** | GPT-4o, GPT-4, o3 | Your API key |
+| **LM Studio** | Any GGUF model | Free (local) |
 
-Bring your own subscriptions. No extra charges.
-
----
-
-## For teams
-
-- **BYOK** — everyone uses their existing AI subscriptions
-- **Shared workspaces** — chains, templates, and agents shared across the team
-- **Agent marketplace** — install specialized tools, or build and sell your own
-- **Role-based access** — control who can do what
-- **Audit logging** — every action tracked
-- **Resource management** — compute budgets per agent, cost tracking, ROI reports
+14 model profiles scored across quality, speed, cost, and reliability. Brynq routes each task to the best model automatically.
 
 ---
 
-## For agent creators
+## Key Features
 
-Build specialized AI agents and list them on the Brynq marketplace. Set your own price. We take 15%, you keep 85%.
+**Multi-Model Orchestration** — One prompt triggers multiple models working together with intelligent strategy selection.
 
-Your agent is an HTTP endpoint that accepts prompts and returns results. Any language, any hosting. Brynq handles discovery, billing, and payouts via Stripe Connect.
+**Multiplayer Rooms** — Create a room, share the code, collaborate in real-time. Pool GPU compute across machines.
+
+**Learning Loop** — Brynq learns which chains work best. Successful patterns become reusable skills that improve over time.
+
+**Session Search** — Full-text search across all your past conversations. Find any discussion instantly.
+
+**Privacy-First** — Your documents, code, and data execute locally. Only orchestration metadata touches our servers. API keys stay in your encrypted vault.
+
+**Platform Gateway** — Connect Telegram, Discord, or Slack bots to your Brynq instance. Messages bridge into rooms automatically.
+
+**Knowledge Base** — GPU-accelerated semantic search across your entire codebase. Ask questions in natural language.
 
 ---
 
-## Architecture
+## CLI
 
+```bash
+brynq-runtime chat                    # Interactive multi-model chat
+brynq-runtime chain "analyze this..." # Run a multi-model chain
+brynq-runtime models                  # List available models
+brynq-runtime status                  # Show system health
+brynq-runtime login claude            # OAuth login for Claude
 ```
-brynq.ai (Cloud Brain)                    Your Machine
-+--------------------------+              +---------------------------+
-| Chain Planner            |   signed     | Plan Executor             |
-|   Intent classifier      |   plans      |   Local Bridge  --> Ollama|
-|   Strategy selector      |<------------>|   Cloud Bridge  --> Claude|
-|   Model scorer           |   metadata   |   Agent Bridge  --> Tools |
-|   Quality evaluator      |   only       |   Memory Engine           |
-|                          |              |   Security Sandbox        |
-| Marketplace (2,600+)     |              |                           |
-| Agent Registry           |              | Your data stays here.     |
-+--------------------------+              +---------------------------+
-```
+
+75 commands available inside the chat interface. Type `/help` to see them all.
+
+---
+
+## For Teams
+
+- **BYOK** — Everyone uses their existing AI subscriptions. No extra charges.
+- **Rooms** — Create private rooms, invite teammates, share compute.
+- **Role-based access** — Admins control who can do what.
+- **Audit logging** — Every action tracked.
+- **Cost tracking** — Token budgets per team, per model, per agent.
+
+---
+
+## For Agent Creators
+
+Build specialized AI agents and list them on the Brynq marketplace. Set your own price. We take 30%, you keep 70%.
+
+Your agent is an HTTP endpoint. Any language, any hosting. Brynq handles discovery, billing, and payouts.
+
+---
+
+## Stack
+
+- **Runtime**: Python, FastAPI, stdlib HTTP (zero heavy deps)
+- **Cloud**: FastAPI, SQLite, HMAC-SHA256 signed plans
+- **Auth**: OAuth 2.0 PKCE + BYOK API keys + Fernet vault
+- **Search**: BAAI/bge-base-en-v1.5 embeddings, FTS5 full-text
+- **Persistence**: SQLite (WAL mode) for chat, rooms, skills
+- **Rooms**: WebSocket P2P relay, cloud signaling
+- **Tests**: 4,700+ passing
 
 ---
 
 ## Links
 
 - [brynq.ai](https://brynq.ai) — Platform
-- [Marketplace](https://brynq.ai/marketplace) — 2,600+ tools
-- [Pricing](https://brynq.ai/pricing)
 - [Documentation](https://brynq.ai/docs)
+- [Marketplace](https://brynq.ai/marketplace)
+- [Pricing](https://brynq.ai/pricing)
+- [PyPI Package](https://pypi.org/project/brynq/)
 
 ---
 
