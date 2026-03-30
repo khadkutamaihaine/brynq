@@ -5,8 +5,8 @@
 <h1 align="center">Brynq</h1>
 
 <p align="center">
-  <strong>Multi-model AI orchestration for Python</strong><br/>
-  Chain Claude, Gemini, GPT, and Llama together in 3 lines of code.
+  <strong>Your AI workforce needs an Operating System.</strong><br/>
+  Intelligent multi-model orchestration for developers and teams.
 </p>
 
 <p align="center">
@@ -22,142 +22,68 @@
 
 ---
 
+# The foundational layer for the world’s first distributed, multi-user AI workforce.
+
+Brynq is an **Intelligent SDK and Social TUI** that turns your terminal into a collaborative command center for humans and AI agents.
+
+## ⚡ The Unified Social Grid
+Brynq transforms isolated machines into a **Social Compute Mesh**. Create a Room, invite your team, and pool your local resources. Whether it's an RTX 4090 or a Mac Studio, the Brynq Grid allows you to distribute massive agent swarms across every peer in the room, finishing complex projects with the combined power of your entire network.
+
+## 🧠 Persistent Semantic Memory (The Exocortex)
+Never repeat a prompt again. Every interaction and successful execution is captured in your local **Persistent Exocortex**.
+*   **Instant Recall:** Powered by an integrated SQLite FTS5 engine for perfect full-text search across your entire history.
+*   **Hive Learning:** Every successful chain is indexed as a "Skill." As you work, the system builds a proprietary data moat, compounding the intelligence of your local environment over time.
+
+## 📁 Shared Workspaces & A2A Protocol
+Brynq is built for high-velocity collaboration.
+*   **Real-Time Sync:** Our WebSocket relay ensures that when an agent writes code on one machine, it appears in the shared project workspace across the entire team instantly.
+*   **Agent-to-Agent (A2A):** Agents communicate through a structured protocol, allowing them to delegate tasks, share results, and coordinate complex multi-step workflows autonomously across different host PCs.
+
+## 🛡️ Real-World Execution (Unplugged)
+Brynq is built for production, not a sandbox. It is wired directly into the engines that drive modern software:
+*   **Physical Actuation:** Real browser control via `Playwright` and OS automation via `PyAutoGUI`.
+*   **DevOps Autonomy:** Integrated `Terraform` execution for zero-click infrastructure deployment.
+*   **Continuous Security:** Real-time codebase auditing using `Bandit` and `Safety` to keep your environment secure.
+
+---
+
 ## Install
 
 ```bash
 pip install brynq
 ```
 
-## Use
+## Use (The SDK)
 
 ```python
 from brynq import Brynq
 
 b = Brynq()
-answer = b.ask("What are the top 3 trends in AI?")
-print(answer)
-```
+# It auto-detects your local Ollama, Claude CLI, and Gemini CLI.
 
-That's it. Brynq auto-detects your models (Ollama, Claude, Gemini) and routes to the best one.
+# 1. Intelligent Routing
+b.route("Should I use React or Vue?") # Returns strategy="debate"
 
----
+# 2. Seamless Ask (Auto-routes to the best model)
+res = b.ask("What is the best way to handle auth in FastAPI?")
 
-## SDK
-
-### `b.ask()` — Single model, auto-routed
-
-```python
-b.ask("Summarize this report")              # auto-picks best model
-b.ask("Write a poem", model="claude")       # specific model
-b.ask("Translate to French", model="ollama:mistral")
-```
-
-### `b.chain()` — Multiple models working together
-
-```python
-# Two models debate, a judge decides
-b.chain("debate", "Should we use Rust or Python for our API?")
-
-# Draft → critique → revise
-b.chain("refine", "Write a press release for our product launch")
-
-# Models run in parallel, results merged
-b.chain("fan_out", "Research the pros and cons of microservices")
-
-# Model A passes context to B to C
-b.chain("sequential", "Analyze this data, then visualize it, then summarize")
-```
-
-### `b.fallback()` — Automatic failover
-
-```python
-# If Claude fails, try Gemini, then Ollama
-b.fallback("Explain quantum computing", ["claude", "gemini", "ollama:llama3"])
-```
-
-### `b.models()` — What's available
-
-```python
-for m in b.models():
-    print(f"{m['id']:20s} {m['provider']:12s} {m['type']}")
-
-# ollama:llama3:latest ollama       local
-# ollama:mistral:latest ollama      local
-# claude               anthropic    cloud
-# gemini               google       cloud
-```
-
-### `b.cost_report()` — Track usage
-
-```python
-report = b.cost_report()
-print(f"{report['total_calls']} calls, {report['total_tokens']} tokens")
+# 3. Multi-Model Chains (The core differentiator)
+res = b.chain("debate", "Should we use Rust or Go?")
 ```
 
 ---
 
-## CLI
+## The Social TUI
 
-Brynq also has a full interactive CLI:
+Brynq includes a Discord-like workspace for your terminal:
 
 ```bash
-brynq-runtime chat          # Interactive multi-model chat
-brynq-runtime models        # List available models
-brynq-runtime status        # Show system health
+brynq-runtime tui
 ```
 
-Inside chat, type `/help` for all commands.
-
----
-
-## Chain Strategies
-
-| Strategy | How it works | Best for |
-|----------|-------------|----------|
-| **Debate** | Models argue opposing sides, a judge decides | Decisions, comparisons |
-| **Refine** | Draft → critique → revise cycle | Writing, analysis |
-| **Fan-Out** | Models run in parallel, results merged | Research, broad questions |
-| **Sequential** | A passes context to B to C | Multi-step pipelines |
-
----
-
-## Supported Models
-
-| Provider | Models | Auth |
-|----------|--------|------|
-| **Ollama** | Llama 3, Mistral, Qwen, DeepSeek, Phi | Free (local) |
-| **Anthropic** | Claude Opus, Sonnet, Haiku | API key or CLI |
-| **Google** | Gemini Pro, Flash | API key or CLI |
-| **OpenAI** | GPT-4o, o3 | API key |
-| **LM Studio** | Any GGUF model | Free (local) |
-
-Works offline with Ollama. Zero config. No account needed.
-
----
-
-## How It Works
-
-```
-Your Code                              Your Machine
-┌──────────────────┐                   ┌─────────────────────┐
-│ from brynq import │                   │ Ollama (local)       │
-│ Brynq             │──── routes to ──►│ Claude API           │
-│                    │    best model    │ Gemini API           │
-│ b.ask("...")       │                  │ OpenAI API           │
-└──────────────────┘                   └─────────────────────┘
-         │
-         │ chain strategies
-         ▼
-┌──────────────────┐
-│ brynq.ai (cloud)  │
-│ Plans chains       │
-│ Scores models      │
-│ Signs execution    │
-│ Never sees content │
-└──────────────────┘
-```
-
-**Your data stays on your machine.** The cloud brain only plans which models to use and in what order. It never sees your prompts, documents, or responses.
+*   **See who’s online:** Monitor your team’s model availability in real-time.
+*   **Agent DMs:** Physically send a task from your computer to your friend’s computer.
+*   **Live Sync:** Watch your project file tree light up as agents collaborate on the same code.
 
 ---
 
@@ -170,6 +96,6 @@ Your Code                              Your Machine
 ---
 
 <p align="center">
-  <strong>Multi-model AI orchestration for Python</strong><br/>
+  <strong>Join the Hive.</strong><br/>
   <code>pip install brynq</code>
 </p>
